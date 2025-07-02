@@ -24,3 +24,7 @@ from Sales1 group by Distributor,Billdate;
 select Distributor,DATENAME(mm,Billdate) as month_of_sale,
 avg(round(avg(GAmount/TotWeight),2)) over (partition by Distributor order by DATENAME(mm,Billdate)) as Sales_2022
 from Sales1 where Distributor is not null group by Distributor,Billdate;
+
+-- Higher Sales Month
+select  DATENAME(mm,Billdate) as Months,round(sum(NetAmount),2) as Sales from Sales1
+group by Billdate order by Sales desc;
